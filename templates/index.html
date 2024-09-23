@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest Fire Prediction</title>
+    <style>
+        /* Basic resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000000;
+            color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #000000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px; /* Square-shaped links */
+            margin: 0 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            transform: scale(1.05);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive navbar for small screens */
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
+            .navbar a {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+
+        .container {
+            background-color: rgba(28, 28, 28, 0.8);
+            padding: 50px; /* Increased padding */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            max-width: 700px; /* Increased width */
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 1s ease;
+            margin-top: 80px;
+        }
+
+        h1 {
+            font-size: 32px; /* Increased font size */
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 18px; /* Increased font size */
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        .input-note {
+            color: #cccccc; /* Light grey text */
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-align: left;
+            background-color: rgba(28, 28, 28, 0.9); /* Dark grey background */
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #59ab6e; /* Subtle green left border for contrast */
+            font-style: normal; /* Keeps the text easy to read */
+        }
+
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            color: #cccccc;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            background-color: #333;
+            color: #ffffff;
+            border: 2px solid #555;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #FFD700;
+            outline: none;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: rgba(248, 246, 254, 0.461);
+            color: black;
+            padding: 12px 24px; /* Increased padding */
+            border: none;
+            border-radius: 5px;
+            font-size: 18px; /* Increased font size */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: rgba(248, 246, 254, 0.661);
+            transform: scale(1.1);
+        }
+
+        .button:active {
+            transform: scale(0.95);
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 22px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .input-container {
+                flex-direction: column;
+            }
+
+            .input-group {
+                margin: 10px 0;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            h2 {
+                font-size: 16px;
+            }
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Styling for the input note */
+
+
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="aboutus">About</a>
+    </div>
+    
+
+    <div class="container">
+        <p class="input-note">
+            Please enter smaller values (e.g., 0.9, 1, 2, 3). Larger values have been excluded from the dataset to improve the accuracy of the model. Limiting the range helps ensure more accurate forest fire probability predictions.
+        </p>
+        <h1>Forest Fire Prediction</h1>
+        <h2>Predict the Probability of a Forest Fire Occurrence</h2>
+
+        <form id="predictionForm" method="POST" action="/predict">
+            <!-- Input fields for temperature, wind, and humidity -->
+            <div class="input-container">
+                <div class="input-group">
+                    <label for="temperature">Temperature</label>
+                    <input type="number" id="temperature" name="temperature" placeholder="2" step="0.01" required>
+                </div>
+                <div class="input-group">
+                    <label for="wind">Wind Speed</label>
+                    <input type="number" id="wind" name="wind" placeholder="1" step="0.01" required>
+                </div>
+                <div class="input-group">
+                    <label for="RH">Relative Humidity</label>
+                    <input type="number" id="RH" name="RH" placeholder="10" step="0.01" max = "10" required>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <button type="submit" class="button">Predict Probability</button>
+            </div>
+        </form>
+
+        <div class="result" id="predictionResult"></div>
+    </div>
+
+    <script>
+        document.getElementById("predictionForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const temperature = document.getElementById("temperature").value;
+            const wind = document.getElementById("wind").value;
+            const RH = document.getElementById("RH").value;
+
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ temperature, wind, RH })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("predictionResult").innerHTML = `The predicted probability of fire occurrence is <strong>${data.probability}</strong>`;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                document.getElementById("predictionResult").innerHTML = "An error occurred while predicting.";
+            });
+        });
+    </script>
+</body>
+</html>
