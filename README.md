@@ -95,7 +95,7 @@ To run the project locally, follow these steps:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/flameguard.git
+    git clone https://github.com/ihashirjadoon/Flame-Guard
     ```
 
 2. Install dependencies:
