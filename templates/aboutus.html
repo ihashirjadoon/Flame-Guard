@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - FlameGuard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000000;
+            color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #000000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 0 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .container {
+            background-color: rgba(28, 28, 28, 0.8);
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            margin-top: 100px;
+            animation: fadeIn 1s ease;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .team {
+            margin-top: 40px;
+        }
+
+        .team h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .team p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="#">About</a>
+    </div>
+    
+
+    <div class="container">
+        <h1>About FlameGuard</h1>
+        <p>
+            FlameGuard is a next-generation intelligent solution designed to predict and mitigate the risk of forest fires using cutting-edge Artificial Intelligence (AI) and Machine Learning (ML) techniques. With climate change and extreme weather patterns increasing the frequency and intensity of forest fires globally, there is an urgent need for advanced technological tools to safeguard our ecosystems and communities.
+        </p>
+        <p>
+            Our solution leverages comprehensive environmental data, such as temperature, humidity, wind speed, and fuel moisture, to predict the probability of forest fire occurrence with remarkable accuracy. By providing early warnings, FlameGuard helps to prevent disasters, reduce economic losses, and protect human lives, wildlife, and forests.
+        </p>
+        <p>
+            Developed as part of the "FlameGuard" project, our goal was to create an accessible, efficient, and highly accurate platform that could assist forest management authorities and environmental agencies in making informed decisions to combat wildfires.
+        </p>
+        <div class="team">
+            <h2>Our Team</h2>
+            <p>We are a dedicated team of AI and ML enthusiasts, passionate about solving real-world problems using technology. Together, we brought FlameGuard to life, building an innovative platform that integrates the latest advancements in predictive analytics and data science.</p>
+            <p>From data scientists and machine learning engineers to software developers and environmental researchers, our team worked collaboratively to create a solution that not only meets the technical requirements but also addresses the broader environmental challenge of forest fire management.</p>
+        </div>
+    </div>
+</body>
+</html>
